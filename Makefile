@@ -6,7 +6,7 @@
 #    By: jwalsh <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 13:07:31 by jwalsh            #+#    #+#              #
-#    Updated: 2016/11/25 13:00:57 by jwalsh           ###   ########.fr        #
+#    Updated: 2016/11/25 15:48:24 by jwalsh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = fillit
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra #-g3 -fsanitize=address 
+CFLAGS = -Wall -Werror -Wextra
 
 LDFLAGS = -LLibft
 
