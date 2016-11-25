@@ -6,7 +6,7 @@
 /*   By: jwalsh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:28:33 by jwalsh            #+#    #+#             */
-/*   Updated: 2016/11/25 15:04:33 by jwalsh           ###   ########.fr       */
+/*   Updated: 2016/11/25 16:55:02 by jwalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "fillit.h"
 
 /*
-** Attempts to fill maps with the tetriminos, incremeting its size until
+** Attempts to fill maps with the tetriminos, incrementing its size until
 ** successful.
 ** Returns the map structure.
 */
@@ -56,9 +56,9 @@ short	fill_map(t_map *m, t_tetrimino *ts)
 }
 
 /*
-** Attempts tp place a single tetrimino on the map.
-** Returns 1 if successfful.
-** Returns 0 if unseccessful.
+** Attempts to place a single tetrimino on the map.
+** Returns 1 if successful.
+** Returns 0 if unsuccessful.
 */
 
 short	place_t(t_map *m, t_tetrimino *ts)
@@ -73,8 +73,8 @@ short	place_t(t_map *m, t_tetrimino *ts)
 }
 
 /*
-** Removes tetrimino number (m->i - 1).
-** Increments the coords of tetrimino (m->i - 1).
+** Removes tetrimino of index (m->i - 1).
+** Increments the coordinates of tetrimino (m->i - 1).
 ** Decrements the index of the tetrimino to be placed (m->i).
 ** Resets coords of tetrimino number (m->i).
 */
@@ -85,8 +85,7 @@ void	remove_t(t_map *m, t_tetrimino *ts)
 
 	reset_t_coords(ts + m->i);
 	i = 0;
-	--m->i;
-	if (m->i < 0)
+	if (--m->i < 0)
 		return ;
 	while (i < 4)
 	{
@@ -107,8 +106,8 @@ short	update_map(t_map *m, t_tetrimino *ts)
 {
 	short	i;
 
-	i = 0;
-	while (i < 4)
+	i = -1;
+	while (++i < 4)
 	{
 		if (((ts->pts[i].y + ts->y >= m->size) ||
 				(ts->pts[i].x + ts->x >= m->size) ||
@@ -117,14 +116,10 @@ short	update_map(t_map *m, t_tetrimino *ts)
 			increment_t_coords(ts, m);
 			return (0);
 		}
-		++i;
 	}
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		m->m[ts->pts[i].y + ts->y][ts->pts[i].x + ts->x] = 1;
-		++i;
-	}
 	m->i++;
 	return (1);
 }

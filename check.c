@@ -6,16 +6,16 @@
 /*   By: jwalsh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:23:51 by jwalsh            #+#    #+#             */
-/*   Updated: 2016/11/25 16:27:48 by jwalsh           ###   ########.fr       */
+/*   Updated: 2016/11/25 16:42:14 by jwalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-** Takes a string of chars containing the contents of the file.
+** Takes a string containing the contents of the file.
 ** Calls on other functions to check the validity of the input.
-** Returns an array of validated t_tetrimino structs
+** Returns an array of validated t_tetrimino structs.
 */
 
 t_tetrimino	*check_validity(char *input, short num)
@@ -33,7 +33,7 @@ t_tetrimino	*check_validity(char *input, short num)
 /*
 ** Checks if the number of tetriminos if valid.
 ** Checks if the length of the entire file is valid.
-** Checks location of newlines.
+** Checks the location of newlines.
 */
 
 short		check_input_length(char *t, short num)
@@ -63,7 +63,7 @@ short		check_input_length(char *t, short num)
 }
 
 /*
-** Checks the proper location of new lines in each tetrimino.
+** Checks the location of newlines in each tetrimino.
 */
 
 short		check_t_format(char **ts)
@@ -87,10 +87,10 @@ short		check_t_format(char **ts)
 }
 
 /*
-** Takes an array of tetriminos and checks if the pattern is valid. Conditions:
+** Takes an array of tetriminos and checks if eachpattern is valid. Conditions:
 ** -each CHAR_FULL char must be next to at least ONE other CHAR_FULL char.
 ** -there must be at least ONE CHAR_FULL char connected with TWO CHAR_FULL
-**  chars. (see connections variable)
+**  chars (see connections variable).
 ** Returns 1 if conditions are met, else returns 0.
 */
 
