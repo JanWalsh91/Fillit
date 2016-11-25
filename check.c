@@ -6,7 +6,7 @@
 /*   By: jwalsh <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 11:23:51 by jwalsh            #+#    #+#             */
-/*   Updated: 2016/11/25 15:35:43 by jwalsh           ###   ########.fr       */
+/*   Updated: 2016/11/25 16:27:48 by jwalsh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 t_tetrimino	*check_validity(char *input, short num)
 {
 	char	**ts;
-	short	i;
 
-	i = 0;
 	if (check_input_length(input, num) == 0)
 		return (NULL);
 	ts = t_split(input, num);
@@ -103,23 +101,22 @@ short		check_full_char(char **ts)
 	short	n;
 	short	connections;
 
-	i = 0;
-	while (ts[i])
+	i = -1;
+	while (ts[++i])
 	{
 		n = 0;
 		j = 0;
 		connections = 0;
 		while (ts[i][j])
 		{
-			if (ts[i][j] != CHAR_FULL && ts[i][j] != CHAR_EMPTY &&
-					ts[i][j] != '\n')
-				return (0);
 			if (ts[i][j] == CHAR_FULL)
 				n += check_pattern(ts[i], j, &connections);
-			if (!(++j) || (n == 4 && !connections))
+			if ((n == 4 && !connections) || (ts[i][j] != CHAR_FULL
+						&& ts[i][j] != CHAR_EMPTY && ts[i][j] != '\n'))
 				return (0);
+			++j;
 		}
-		if (!(++i) || n != 4 || !connections)
+		if (n != 4 || !connections)
 			return (0);
 	}
 	return (1);
